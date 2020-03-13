@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZwapReviewBot.Web", "src\ZwapReviewBot.Web\ZwapReviewBot.Web.csproj", "{9950FAF9-CDBE-4DEB-B2BE-2CFAB9494771}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PivotalTrackerConnector", "src\PivotalTrackerConnector\PivotalTrackerConnector.csproj", "{7D3540C2-982B-4F0C-9B1B-F27BE8C766DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlackConnector", "src\SlackConnector\SlackConnector.csproj", "{C62CC63F-8CF2-44CF-9652-2D98571E7189}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{EF8D9737-A640-4103-8009-12DE9C13FEBA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{C5A9CE28-739D-4692-AB5A-62E531017611}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZwapgridReviewBot.Tests", "test\ZwapgridReviewBot.Tests\ZwapgridReviewBot.Tests.csproj", "{4D8F2B2E-C401-44DE-9E2A-E803F353BCFE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9950FAF9-CDBE-4DEB-B2BE-2CFAB9494771}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9950FAF9-CDBE-4DEB-B2BE-2CFAB9494771}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9950FAF9-CDBE-4DEB-B2BE-2CFAB9494771}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9950FAF9-CDBE-4DEB-B2BE-2CFAB9494771}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D3540C2-982B-4F0C-9B1B-F27BE8C766DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D3540C2-982B-4F0C-9B1B-F27BE8C766DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D3540C2-982B-4F0C-9B1B-F27BE8C766DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D3540C2-982B-4F0C-9B1B-F27BE8C766DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C62CC63F-8CF2-44CF-9652-2D98571E7189}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C62CC63F-8CF2-44CF-9652-2D98571E7189}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C62CC63F-8CF2-44CF-9652-2D98571E7189}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C62CC63F-8CF2-44CF-9652-2D98571E7189}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D8F2B2E-C401-44DE-9E2A-E803F353BCFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D8F2B2E-C401-44DE-9E2A-E803F353BCFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D8F2B2E-C401-44DE-9E2A-E803F353BCFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D8F2B2E-C401-44DE-9E2A-E803F353BCFE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7AB8D39D-FA00-483E-B1DA-7187E3475EAA}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7D3540C2-982B-4F0C-9B1B-F27BE8C766DC} = {EF8D9737-A640-4103-8009-12DE9C13FEBA}
+		{C62CC63F-8CF2-44CF-9652-2D98571E7189} = {EF8D9737-A640-4103-8009-12DE9C13FEBA}
+		{9950FAF9-CDBE-4DEB-B2BE-2CFAB9494771} = {EF8D9737-A640-4103-8009-12DE9C13FEBA}
+		{4D8F2B2E-C401-44DE-9E2A-E803F353BCFE} = {C5A9CE28-739D-4692-AB5A-62E531017611}
+	EndGlobalSection
+EndGlobal
