@@ -25,7 +25,7 @@ namespace ZwapReviewBot.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -35,8 +35,11 @@ namespace ZwapReviewBot.Web
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            app.UseHttpsRedirection();
+            
+            if (!env.IsDevelopment())
+            {
+                app.UseHttpsRedirection();
+            }
 
             app.UseRouting();
 

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace PivotalTrackerConnector.Models.Webhooks
 {
@@ -12,8 +13,13 @@ namespace PivotalTrackerConnector.Models.Webhooks
 
         [JsonProperty("id", NullValueHandling = NullValueHandling.Ignore)]
         public long? Id { get; set; }
+        
+        [JsonProperty("original_values", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonConverter(typeof(DictionaryConverter))]
+        public Dictionary<string, string> OriginalValues { get; set; }
 
         [JsonProperty("new_values", NullValueHandling = NullValueHandling.Ignore)]
-        public NewValues NewValues { get; set; }
+        [JsonConverter(typeof(DictionaryConverter))]
+        public Dictionary<string, string> NewValues { get; set; }
     }
 }

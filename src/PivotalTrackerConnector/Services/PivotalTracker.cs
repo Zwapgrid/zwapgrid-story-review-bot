@@ -10,6 +10,7 @@ using PivotalTrackerConnector.Exceptions;
 using PivotalTrackerConnector.Models.Attachments;
 using PivotalTrackerConnector.Models.Comments;
 using PivotalTrackerConnector.Models.Project;
+using PivotalTrackerConnector.Models.Reviews;
 using PivotalTrackerConnector.Models.Stories;
 using PivotalTrackerConnector.Models.Tasks;
 using PivotalTrackerConnector.Models.User;
@@ -206,12 +207,26 @@ namespace PivotalTrackerConnector.Services
         /// <param name="projectId">Id of the project to get the story from.</param>
         /// <param name="storyId">Id of the story you want to return.</param>
         /// <returns>Returns a PivotalStory</returns>
-        public async Task<PivotalStory> GetStoryByIdAsync(int? projectId, int storyId)
+        public async Task<PivotalStory> GetStoryByIdAsync(int? projectId, long storyId)
         {
             var properProjectId = GetProjectIdToUse(projectId);
             var response = await _httpService.GetAsync(StringUtil.PivotalStoriesUrl(properProjectId, storyId));
 
             return await HandleResponse<PivotalStory>(response);
+        }
+        
+        /// <summary>
+        /// Gets a story within a project by Id.
+        /// </summary>
+        /// <param name="projectId">Id of the project to get the story from.</param>
+        /// <param name="storyId">Id of the story you want to return.</param>
+        /// <returns>Returns a PivotalStory</returns>
+        public async Task<List<Review>> GetStoryReviewsByIdAsync(int? projectId, long storyId)
+        {
+            var properProjectId = GetProjectIdToUse(projectId);
+            var response = await _httpService.GetAsync(StringUtil.PivotalStoryReviewUrl(properProjectId, storyId));
+
+            return await HandleResponse<List<Review>>(response);
         }
 
         /// <summary>
@@ -220,7 +235,7 @@ namespace PivotalTrackerConnector.Services
         /// <param name="projectId">Id of the project to delete the story from.</param>
         /// <param name="storyId">Id of the story to delete.</param>
         /// <returns>Boolean</returns>
-        public async Task<bool> DeleteStoryAsync(int? projectId, int storyId)
+        public async Task<bool> DeleteStoryAsync(int? projectId, long storyId)
         {
             var properProjectId = GetProjectIdToUse(projectId);
             var response = await _httpService.DeleteAsync(StringUtil.PivotalStoriesUrl(properProjectId, storyId));
@@ -280,7 +295,7 @@ namespace PivotalTrackerConnector.Services
         /// <param name="projectId">Id of the project.</param>
         /// <param name="storyId">Id of the story.</param>
         /// <returns>Returns a List&lt;PivotalTask&gt;.</returns>
-        public async Task<List<PivotalTask>> GetTasksFromStoryAsnc(int? projectId, int storyId)
+        public async Task<List<PivotalTask>> GetTasksFromStoryAsnc(int? projectId, long storyId)
         {
             var properProjectId = GetProjectIdToUse(projectId);
             var response = await _httpService.GetAsync(StringUtil.PivotalStoryTasksUrl(properProjectId, storyId));
@@ -295,7 +310,7 @@ namespace PivotalTrackerConnector.Services
         /// <param name="storyId">Id of the story.</param>
         /// <param name="pivotalTask">The predefined PivotalNewTask to create.</param>
         /// <returns>Returns a PivotalTask.</returns>
-        public async Task<PivotalTask> CreateNewStoryTaskAsync(int? projectId, int storyId, PivotalTask pivotalTask)
+        public async Task<PivotalTask> CreateNewStoryTaskAsync(int? projectId, long storyId, PivotalTask pivotalTask)
         {
             var properProjectId = GetProjectIdToUse(projectId);
             var response = await _httpService.PostAsync(StringUtil.PivotalStoryTasksUrl(properProjectId, storyId), pivotalTask);
@@ -312,7 +327,7 @@ namespace PivotalTrackerConnector.Services
         /// <param name="complete">(optional) Determines whether or not the task is marked as "complete". (default: false)</param>
         /// <param name="position">(optional) Sets the position of the task on the story (default: 1)</param>
         /// <returns>Returns a PivotalTask.</returns>
-        public async Task<PivotalTask> CreateNewStoryTaskAsync(int? projectId, int storyId, string description, bool complete = false, int position = 1)
+        public async Task<PivotalTask> CreateNewStoryTaskAsync(int? projectId, long storyId, string description, bool complete = false, int position = 1)
         {
             var properProjectId = GetProjectIdToUse(projectId);
             var pivotalTask = new PivotalTask
@@ -333,7 +348,7 @@ namespace PivotalTrackerConnector.Services
         /// <param name="storyId">Id of the story.</param>
         /// <param name="pivotalTask">The task model to update,</param>
         /// <returns>Returns a PivotalTask.</returns>
-        public async Task<PivotalTask> UpdateStoryTaskAsync(int? projectId, int storyId, PivotalTask pivotalTask)
+        public async Task<PivotalTask> UpdateStoryTaskAsync(int? projectId, long storyId, PivotalTask pivotalTask)
         {
             var properProjectId = GetProjectIdToUse(projectId);
             var response = await _httpService.PutAsync(StringUtil.PivotalStoryTasksUrl(properProjectId, storyId, pivotalTask.Id), pivotalTask);
@@ -348,7 +363,7 @@ namespace PivotalTrackerConnector.Services
         /// <param name="storyId">Id of the story.</param>
         /// <param name="taskId">Id of the task to delete.</param>
         /// <returns>Returns a Boolean (true) if successful.</returns>
-        public async Task<bool> DeleteStoryTaskAsync(int? projectId, int storyId, int taskId)
+        public async Task<bool> DeleteStoryTaskAsync(int? projectId, long storyId, int taskId)
         {
             var properProjectId = GetProjectIdToUse(projectId);
             var response = await _httpService.DeleteAsync(StringUtil.PivotalStoryTasksUrl(properProjectId, storyId, taskId));
@@ -365,7 +380,7 @@ namespace PivotalTrackerConnector.Services
         /// <param name="storyId">Id of the story.</param>
         /// <param name="includeAttachments">(optional) Defines whether we return attachments with the comments. Default: False</param>
         /// <returns>Returns a List&lt;PivotalComment&gt;. If you set <paramref name="includeAttachments"/> to true, also returns attachments</returns>
-        public async Task<List<PivotalComment>> GetCommentsAsync(int? projectId, int storyId, bool includeAttachments = false)
+        public async Task<List<PivotalComment>> GetCommentsAsync(int? projectId, long storyId, bool includeAttachments = false)
         {
             var properProjectId = GetProjectIdToUse(projectId);
             // TODO: Implement include attachments.
@@ -433,7 +448,7 @@ namespace PivotalTrackerConnector.Services
         /// <param name="storyId">Id of the story to add the comment to.</param>
         /// <param name="bodyText">The main description text of the comment.</param>
         /// <returns></returns>
-        public async Task<PivotalComment> CreateNewCommentAsync(int? projectId, int storyId, string bodyText)
+        public async Task<PivotalComment> CreateNewCommentAsync(int? projectId, long storyId, string bodyText)
         {
             var properProjectId = GetProjectIdToUse(projectId);
             // TODO: Implement include attachments.
@@ -462,7 +477,7 @@ namespace PivotalTrackerConnector.Services
         ///     name="closeFileDataStream">
         /// </param>
         /// <returns></returns>
-        public async Task<PivotalComment> CreateNewCommentAsync(int? projectId, int storyId, string bodyText, Stream fileData, bool closeFileDataStream = true)
+        public async Task<PivotalComment> CreateNewCommentAsync(int? projectId, long storyId, string bodyText, Stream fileData, bool closeFileDataStream = true)
         {
             var properProjectId = GetProjectIdToUse(projectId);
             // Create a new comment on our story before we go any further
@@ -534,7 +549,7 @@ namespace PivotalTrackerConnector.Services
             }
         }
 
-        public async Task<PivotalComment> UpdateCommentAsync(int? projectId, int storyId, PivotalComment comment)
+        public async Task<PivotalComment> UpdateCommentAsync(int? projectId, long storyId, PivotalComment comment)
         {
             var properProjectId = GetProjectIdToUse(projectId);
             if (comment.PersonId != null)

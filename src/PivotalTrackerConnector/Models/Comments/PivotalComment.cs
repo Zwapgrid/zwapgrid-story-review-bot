@@ -5,7 +5,7 @@ namespace PivotalTrackerConnector.Models.Comments
 {
     public class PivotalComment : PivotalModel
     {
-        public int StoryId { get; set; }
+        public long StoryId { get; set; }
         public int ProjectId { get; set; }
         public List<PivotalAttachment> FileAttachments { get; set; }
         public List<int> FileAttachmentIds { get; set; }

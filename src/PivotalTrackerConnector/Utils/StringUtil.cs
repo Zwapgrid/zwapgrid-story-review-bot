@@ -28,9 +28,14 @@ namespace PivotalTrackerConnector.Utils
         /// <param name="projectId">Id of your project.</param>
         /// <param name="storyId">Id of the story to retrieve</param>
         /// <returns></returns>
-        public static string PivotalStoriesUrl(int projectId, int storyId)
+        public static string PivotalStoriesUrl(int projectId, long storyId)
         {
             return $"projects/{projectId}/stories/{storyId}";
+        }
+        
+        public static string PivotalStoryReviewUrl(int projectId, long storyId)
+        {
+            return $"projects/{projectId}/stories/{storyId}/reviews";
         }
 
         /// <summary>
@@ -85,7 +90,7 @@ namespace PivotalTrackerConnector.Utils
         /// <param name="projectId">Id of your project</param>
         /// <param name="storyId">Id of the story to retrieve tasks for.</param>
         /// <returns></returns>
-        public static string PivotalStoryTasksUrl(int projectId, int storyId)
+        public static string PivotalStoryTasksUrl(int projectId, long storyId)
         {
             return $"projects/{projectId}/stories/{storyId}/tasks";
         }
@@ -97,7 +102,7 @@ namespace PivotalTrackerConnector.Utils
         /// <param name="storyId">Id of the story to retrieve tasks for.</param>
         /// <param name="taskId">Id of the task to retrieve.</param>
         /// <returns></returns>
-        public static string PivotalStoryTasksUrl(int projectId, int storyId, int taskId)
+        public static string PivotalStoryTasksUrl(int projectId, long storyId, int taskId)
         {
             return $"projects/{projectId}/stories/{storyId}/tasks/{taskId}";
         }
@@ -108,7 +113,7 @@ namespace PivotalTrackerConnector.Utils
         /// <param name="projectId">Id of your project.</param>
         /// <param name="storyId">Id of the story to retrieve comments for.</param>
         /// <returns></returns>
-        public static string PivotalCommentsUrl(int projectId, int storyId)
+        public static string PivotalCommentsUrl(int projectId, long storyId)
         {
             return $"projects/{projectId}/stories/{storyId}/comments";
         }
@@ -120,7 +125,7 @@ namespace PivotalTrackerConnector.Utils
         /// <param name="storyId">Id of the story to retrieve a comment for.</param>
         /// <param name="commentId">Id of the comment to retrieve.</param>
         /// <returns></returns>
-        public static string PivotalCommentsUrl(int projectId, int storyId, int commentId)
+        public static string PivotalCommentsUrl(int projectId, long storyId, int commentId)
         {
             return $"projects/{projectId}/stories/{storyId}/comments/{commentId}";
         }
@@ -151,7 +156,7 @@ namespace PivotalTrackerConnector.Utils
         /// <param name="projectId">Id of your project.</param>
         /// <param name="storyId">Id of the story to access tasks from.</param>
         /// <returns></returns>
-        public static string StoryTasksUrl(int projectId, int storyId)
+        public static string StoryTasksUrl(int projectId, long storyId)
         {
             return $"/projects/{projectId}/stories/{storyId}/tasks";
         }
